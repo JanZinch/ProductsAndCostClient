@@ -2,6 +2,7 @@
 #define MAINWIDGET_H
 
 #include <QDebug>
+#include <QWindow>
 #include <QWidget>
 #include <QBoxLayout>
 #include <QPushButton>
@@ -33,6 +34,7 @@ public:
 
     MainWidget(QWidget *parent = nullptr);
     void InitButton(QPushButton* instance, QString text, function<void(void)> onClickFunc);
+    void ShowAddItemForm();
 
     ~MainWidget();
 };

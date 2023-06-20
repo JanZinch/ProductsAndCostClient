@@ -12,10 +12,10 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
     _buttonsLayout = new QHBoxLayout(this);
 
-    InitButton(_addItemButton, "Add item", [](){
+//    function<void ()> f;
+//    f = ShowAddItemForm;
 
-        qDebug()<<"Do something";
-    });
+    InitButton(_addItemButton, "Add item", [this](){ShowAddItemForm();});
 
     InitButton(_editItemButton, "Edit item", nullptr);
 
@@ -33,6 +33,11 @@ void MainWidget::InitButton(QPushButton* instance, QString text, function<void (
     instance = new QPushButton(text);
     _buttonsLayout->addWidget(instance);
     connect(instance, &QPushButton::clicked, this, onClickFunc);
+}
+
+void MainWidget::ShowAddItemForm()
+{
+
 }
 
 MainWidget::~MainWidget()
