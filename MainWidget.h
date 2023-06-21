@@ -1,6 +1,8 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
+#include "AddProductItemForm.h"
+
 #include <QDebug>
 #include <QWindow>
 #include <QWidget>
@@ -19,7 +21,6 @@ class MainWidget : public QWidget
 private:
 
     QVBoxLayout* _mainLayout = nullptr;
-
     QListWidget* _query = nullptr;
 
     QHBoxLayout* _buttonsLayout = nullptr;
@@ -33,7 +34,7 @@ private:
 public:
 
     MainWidget(QWidget *parent = nullptr);
-    void InitButton(QPushButton* instance, QString text, function<void(void)> onClickFunc);
+    void InitButton(QPushButton* instance, QString text, void(MainWidget::*onClickFunc)());
     void ShowAddItemForm();
 
     ~MainWidget();

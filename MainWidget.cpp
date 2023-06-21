@@ -12,13 +12,17 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
     _buttonsLayout = new QHBoxLayout(this);
 
-//    function<void ()> f;
-//    f = ShowAddItemForm;
 
-    InitButton(_addItemButton, "Add item", [this](){ShowAddItemForm();});
+//    void (MainWidget::*func1)() = &MainWidget::ShowAddItemForm;
+//    (this->*func1)();
 
+//    function<void (void)> func2;
+//    func2 = bind(&MainWidget::ShowAddItemForm, this);
+//    func2();
+
+
+    InitButton(_addItemButton, "Add item", &MainWidget::ShowAddItemForm);
     InitButton(_editItemButton, "Edit item", nullptr);
-
     InitButton(_removeItemButton, "Remove item", nullptr);
     InitButton(_clearQueryButton, "Clear query", nullptr);
 
@@ -28,7 +32,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
 }
 
-void MainWidget::InitButton(QPushButton* instance, QString text, function<void ()> onClickFunc)
+void MainWidget::InitButton(QPushButton* instance, QString text, void(MainWidget::*onClickFunc)())
 {
     instance = new QPushButton(text);
     _buttonsLayout->addWidget(instance);
@@ -37,6 +41,10 @@ void MainWidget::InitButton(QPushButton* instance, QString text, function<void (
 
 void MainWidget::ShowAddItemForm()
 {
+    AddProductItemForm* form = new AddProductItemForm();
+    form->show();
+
+
 
 }
 
