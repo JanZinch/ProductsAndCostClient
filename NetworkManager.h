@@ -5,6 +5,7 @@
 #include <winsock2.h>
 #pragma comment(lib, "Ws2_32.lib")
 
+#include "ProductItem.h"
 #include <QDebug>
 
 #define global
@@ -27,6 +28,7 @@ public:
 
     NetworkManager(int port, const char* ip);
     bool ConnectToServer();
+    bool VerifyProduct(ProductItem productItem);
     ~NetworkManager();
 };
 

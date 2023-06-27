@@ -7,20 +7,22 @@
 
 using namespace std;
 
-class ProductItem
+struct ProductItem
 {
 private:
 
     char _name[30] = "not_set";
-    int _count = 0;
+    int _amount = 0;
 
 public:
 
     ProductItem();
     ProductItem(const char *, int);
+    const char* Name() const;
+    const int Amount() const;
+    bool operator ==(const ProductItem&);
     friend QTextStream& operator<<(QTextStream&, const ProductItem&);
-    friend ostream& operator<<(ostream&, const ProductItem&);
-    string ToString() const;
+    QString ToQString() const;
 };
 
 #endif // PRODUCTITEM_H

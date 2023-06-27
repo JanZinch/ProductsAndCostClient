@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     AddProductItemForm.cpp \
+    Customer.cpp \
     NetworkManager.cpp \
     ProductItem.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     AddProductItemForm.h \
+    Customer.h \
     MainWidget.h \
     NetworkManager.h \
     ProductItem.h

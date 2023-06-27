@@ -10,25 +10,12 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
         messageBox.critical(this, "Error", CONNECTION_ERROR_MSG, QMessageBox::Ok);
         messageBox.setFixedSize(500, 200);
 
-        //delete _networkManager;
-
         throw exception(CONNECTION_ERROR_MSG);
     }
 
-    _query = new QListWidget(this);
-
     _mainLayout = new QVBoxLayout(this);
 
-    _mainLayout->addWidget(_query);
-
-
-    QString itemEntry;
-    QTextStream sstream(&itemEntry);
-
-    ProductItem *p = new ProductItem("first", 10);
-    sstream << *p;
-
-    _query->addItem(itemEntry);
+    _customer = shared_ptr<Customer>(new Customer(this, _mainLayout));
 
     _buttonsLayout = new QHBoxLayout(this);
 
@@ -44,7 +31,6 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
 }
 
-
 void MainWidget::InitButton(QPushButton* instance, QString text, void(MainWidget::*onClickFunc)())
 {
     instance = new QPushButton(text);
@@ -54,14 +40,18 @@ void MainWidget::InitButton(QPushButton* instance, QString text, void(MainWidget
 
 void MainWidget::ShowAddItemForm()
 {
-    AddProductItemForm* form = new AddProductItemForm(nullptr, [](ProductItem createdProductItem){
+    AddProductItemForm* form = new AddProductItemForm(nullptr, [this](ProductItem createdProductItem){
 
-        qDebug() << "Data: " << createdProductItem.ToString().c_str();
+        qDebug() << "Data: " << createdProductItem.ToQString();
+
+        if (_networkManager->VerifyProduct(createdProductItem)){
+
+            _customer->AddToQuery(createdProductItem);
+        }
 
     });
 
     form->show();
-
 }
 
 MainWidget::~MainWidget()

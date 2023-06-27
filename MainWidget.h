@@ -4,6 +4,7 @@
 #include "AddProductItemForm.h"
 #include "ProductItem.h"
 #include "NetworkManager.h"
+#include "Customer.h"
 
 #include <QDebug>
 #include <QWindow>
@@ -29,9 +30,9 @@ class MainWidget : public QWidget
 private:
 
     shared_ptr<NetworkManager> _networkManager = nullptr;
+    shared_ptr<Customer> _customer = nullptr;
 
     QVBoxLayout* _mainLayout = nullptr;
-    QListWidget* _query = nullptr;
 
     QHBoxLayout* _buttonsLayout = nullptr;
 

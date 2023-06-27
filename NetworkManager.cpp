@@ -35,6 +35,12 @@ bool NetworkManager::ConnectToServer()
 
 }
 
+bool NetworkManager::VerifyProduct(ProductItem productItem)
+{
+
+    return true;
+}
+
 NetworkManager::~NetworkManager()
 {
     closesocket(_serverSocket);

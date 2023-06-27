@@ -5,26 +5,37 @@ ProductItem::ProductItem() = default;
 ProductItem::ProductItem(const char *name, int count)
 {
     strcpy_s(this->_name, name);
-    this->_count = count;
+    this->_amount = count;
 }
 
-string ProductItem::ToString() const
+const char *ProductItem::Name() const
 {
+    return _name;
+}
 
-    return string("Name: ") + string(_name) + string("  Count: ") + to_string(_count);
+const int ProductItem::Amount() const
+{
+    return _amount;
+}
+
+bool ProductItem::operator==(const ProductItem &other){
+
+    return Name() == other.Name();
 }
 
 QTextStream& operator<<(QTextStream& out, const ProductItem &productItem) {
 
     return out <<
         "Name: " << productItem._name <<
-            "  Count: " << productItem._count;
+            "  Count: " << productItem._amount;
 }
 
-ostream& operator<<(ostream& out, const ProductItem &productItem) {
+QString ProductItem::ToQString() const
+{
+    QString result;
+    QTextStream textStream(&result);
+    textStream << *this;
 
-    return out <<
-        "Name: " << productItem._name <<
-            "  Count: " << productItem._count;
+    return result;
 }
 
