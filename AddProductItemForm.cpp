@@ -30,7 +30,7 @@ AddProductItemForm::AddProductItemForm(QWidget *parent, function<void(ProductIte
 void AddProductItemForm::CreateAndNotify()
 {
     string name = _nameField->text().toStdString();
-    int amount = _nameField->text().toInt();
+    int amount = _amountField->text().toInt();
 
     ProductItem createdProductItem = ProductItem(name.c_str(), amount);
     _onCreatedCallback(createdProductItem);
