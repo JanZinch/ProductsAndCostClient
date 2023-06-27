@@ -54,7 +54,12 @@ void MainWidget::InitButton(QPushButton* instance, QString text, void(MainWidget
 
 void MainWidget::ShowAddItemForm()
 {
-    AddProductItemForm* form = new AddProductItemForm();
+    AddProductItemForm* form = new AddProductItemForm(nullptr, [](ProductItem createdProductItem){
+
+        qDebug() << "Data: " << createdProductItem.ToString().c_str();
+
+    });
+
     form->show();
 
 }

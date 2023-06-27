@@ -19,6 +19,7 @@ public:
     ProductItem();
     ProductItem(const char *, int);
     friend QTextStream& operator<<(QTextStream&, const ProductItem&);
+    friend ostream& operator<<(ostream&, const ProductItem&);
     string ToString() const;
 };
 

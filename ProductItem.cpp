@@ -20,3 +20,11 @@ QTextStream& operator<<(QTextStream& out, const ProductItem &productItem) {
         "Name: " << productItem._name <<
             "  Count: " << productItem._count;
 }
+
+ostream& operator<<(ostream& out, const ProductItem &productItem) {
+
+    return out <<
+        "Name: " << productItem._name <<
+            "  Count: " << productItem._count;
+}
+
