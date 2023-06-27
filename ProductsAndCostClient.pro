@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     AddProductItemForm.cpp \
+    NetworkManager.cpp \
     ProductItem.cpp \
     main.cpp \
     MainWidget.cpp
@@ -17,6 +18,7 @@ SOURCES += \
 HEADERS += \
     AddProductItemForm.h \
     MainWidget.h \
+    NetworkManager.h \
     ProductItem.h
 
 # Default rules for deployment.

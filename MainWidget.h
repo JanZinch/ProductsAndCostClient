@@ -3,10 +3,7 @@
 
 #include "AddProductItemForm.h"
 #include "ProductItem.h"
-
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-#include <winsock2.h>
-#pragma comment(lib, "Ws2_32.lib")
+#include "NetworkManager.h"
 
 #include <QDebug>
 #include <QWindow>
@@ -21,12 +18,7 @@
 #include <QMessageBox>
 #include <QApplication>
 
-#define global
-
-#define PING "@ping"
-#define COMPLETE_SESSION "@complete_session"
-#define MESSAGE_BUFFER_SIZE 500
-#define CONNECTION_ERROR_MSG "Connection error was occurred"
+#include <memory>
 
 using namespace std;
 
@@ -36,7 +28,7 @@ class MainWidget : public QWidget
 
 private:
 
-    SOCKET _serverSocket;
+    shared_ptr<NetworkManager> _networkManager = nullptr;
 
     QVBoxLayout* _mainLayout = nullptr;
     QListWidget* _query = nullptr;
@@ -57,10 +49,8 @@ public:
 
 private:
 
-    bool ConnectToServer();
     void InitButton(QPushButton* instance, QString text, void(MainWidget::*onClickFunc)());
     void ShowAddItemForm();
-
 
 };
 #endif // MAINWIDGET_H
