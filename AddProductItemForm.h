@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QIntValidator>
 
 class AddProductItemForm : public QWidget
 {

@@ -10,12 +10,14 @@ CONFIG += c++11
 
 SOURCES += \
     AddProductItemForm.cpp \
+    ProductItem.cpp \
     main.cpp \
     MainWidget.cpp
 
 HEADERS += \
     AddProductItemForm.h \
-    MainWidget.h
+    MainWidget.h \
+    ProductItem.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

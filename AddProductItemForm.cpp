@@ -11,6 +11,9 @@ AddProductItemForm::AddProductItemForm(QWidget *parent): QWidget{parent}
     _fieldsLayout->addWidget(_nameField);
     _fieldsLayout->addWidget(_amountField);
 
+    _nameField->setMaxLength(30);
+    _amountField->setValidator(new QIntValidator(0, 9999, this));
+
     _mainLayout->addLayout(_fieldsLayout);
 
     _messageLabel = new QLabel("Input data");

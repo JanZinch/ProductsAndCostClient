@@ -5,8 +5,18 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWidget w;
-    w.show();
-    return a.exec();
+    QApplication app(argc, argv);
+
+    try {
+
+        MainWidget window;
+        window.show();
+
+        return app.exec();
+    }
+    catch (exception ex){
+
+        exit(EXIT_FAILURE);
+    }
+
 }
