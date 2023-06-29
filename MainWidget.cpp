@@ -21,7 +21,7 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
 
     InitButton(_addItemButton, "Add item", &MainWidget::ShowAddItemForm);
     InitButton(_editItemButton, "Edit item", nullptr);
-    InitButton(_removeItemButton, "Remove item", nullptr);
+    InitButton(_removeItemButton, "Remove item", &MainWidget::RemoveItemFromQuery);
     InitButton(_confirmItemButton, "Confirm query", nullptr);
     InitButton(_clearQueryButton, "Clear query", nullptr);
 
@@ -54,6 +54,11 @@ void MainWidget::ShowAddItemForm()
     });
 
     form->show();
+}
+
+void MainWidget::RemoveItemFromQuery(){
+
+    _customer->RemoveSelectedFromQuery();
 }
 
 MainWidget::~MainWidget()

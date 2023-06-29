@@ -6,6 +6,7 @@
 
 #include <QBoxLayout>
 #include <QListWidget>
+#include <QDebug>
 
 #include <algorithm>
 
@@ -23,7 +24,8 @@ private:
 public:
 
     Customer(QWidget* viewParent, QBoxLayout* viewLayout);
-    bool AddToQuery(ProductItem productItem);
+    void AddToQuery(ProductItem productItem);
+    void RemoveSelectedFromQuery();
 
 };
 

@@ -6,7 +6,7 @@ Customer::Customer(QWidget *viewParent, QBoxLayout *layout)
     layout->addWidget(_queryView);
 }
 
-bool Customer::AddToQuery(ProductItem productItem)
+void Customer::AddToQuery(ProductItem productItem)
 {
     list<ProductItem>::iterator sameItem = find(_queryModel.begin(), _queryModel.end(), productItem);
 
@@ -22,7 +22,24 @@ bool Customer::AddToQuery(ProductItem productItem)
         _queryModel.emplace_back(productItem);
         _queryView->addItem(productItem.ToQString());
     }
+}
 
-    return true;
+void Customer::RemoveSelectedFromQuery()
+{
+    int currentRow = _queryView->currentRow();
+
+    //qDebug("N: " + currentRow);
+
+    QListWidgetItem *itemView = _queryView->takeItem(currentRow);
+
+
+    list<ProductItem>::iterator item = find_if(_queryModel.begin(), _queryModel.end(), [&itemView](const ProductItem &other){
+
+        return QString::compare(itemView->text(), other.ToQString());
+    });
+
+    _queryModel.erase(item);
+
+    delete itemView;
 
 }

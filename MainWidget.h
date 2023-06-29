@@ -52,6 +52,7 @@ private:
 
     void InitButton(QPushButton* instance, QString text, void(MainWidget::*onClickFunc)());
     void ShowAddItemForm();
+    void RemoveItemFromQuery();
 
 };
 #endif // MAINWIDGET_H
