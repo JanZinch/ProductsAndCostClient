@@ -2,6 +2,8 @@
 
 AddProductItemForm::AddProductItemForm(QWidget *parent, function<void(ProductItem)> onCreatedCallback): QWidget(parent)
 {
+    setWindowTitle("Add product");
+
     _mainLayout = new QVBoxLayout(this);
 
     _nameField = new QLineEdit(this);

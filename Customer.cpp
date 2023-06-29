@@ -12,10 +12,10 @@ bool Customer::AddToQuery(ProductItem productItem)
 
     if (sameItem != _queryModel.end()){
 
+        QListWidgetItem* sameItemView = _queryView->findItems(sameItem->ToQString(), Qt::MatchExactly).at(0);
+
         *sameItem = ProductItem(sameItem->Name(), sameItem->Amount() + productItem.Amount());
-
-        _queryView->addItem((*sameItem).ToQString());        // TODO find and edit
-
+        sameItemView->setText((*sameItem).ToQString());
     }
     else {
 

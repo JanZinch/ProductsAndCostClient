@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
     try {
 
         MainWidget window;
+        window.setWindowTitle("Client");
         window.show();
 
         return app.exec();

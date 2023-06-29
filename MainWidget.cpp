@@ -25,6 +25,8 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     InitButton(_confirmItemButton, "Confirm query", nullptr);
     InitButton(_clearQueryButton, "Clear query", nullptr);
 
+
+
     _mainLayout->addLayout(_buttonsLayout);
 
     setLayout(_mainLayout);

@@ -20,7 +20,7 @@ const int ProductItem::Amount() const
 
 bool ProductItem::operator==(const ProductItem &other){
 
-    return Name() == other.Name();
+    return strcmp(this->Name(), other.Name()) == 0;
 }
 
 QTextStream& operator<<(QTextStream& out, const ProductItem &productItem) {
