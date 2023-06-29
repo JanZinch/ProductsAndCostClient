@@ -42,7 +42,7 @@ void MainWidget::InitButton(QPushButton* instance, QString text, void(MainWidget
 
 void MainWidget::ShowAddItemForm()
 {
-    AddProductItemForm* form = new AddProductItemForm(nullptr, [this](ProductItem createdProductItem){
+    ProductItemForm* form = new ProductItemForm(nullptr, [this](ProductItem createdProductItem){
 
         qDebug() << "Data: " << createdProductItem.ToQString();
 
@@ -56,9 +56,34 @@ void MainWidget::ShowAddItemForm()
     form->show();
 }
 
+void MainWidget::ShowEditItemForm()
+{
+    ProductItemForm* form = new ProductItemForm(nullptr, [this](ProductItem createdProductItem){
+
+        qDebug() << "Data: " << createdProductItem.ToQString();
+
+        if (_networkManager->VerifyProduct(createdProductItem)){
+
+            _customer->AddToQuery(createdProductItem);
+        }
+
+    });
+
+    form->show();
+
+
+
+
+}
+
 void MainWidget::RemoveItemFromQuery(){
 
     _customer->RemoveSelectedFromQuery();
+}
+
+void MainWidget::ClearQuery()
+{
+    _customer->ClearQuery();
 }
 
 MainWidget::~MainWidget()

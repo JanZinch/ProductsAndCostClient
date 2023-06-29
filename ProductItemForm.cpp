@@ -1,6 +1,6 @@
-#include "AddProductItemForm.h"
+#include "ProductItemForm.h"
 
-AddProductItemForm::AddProductItemForm(QWidget *parent, function<void(ProductItem)> onCreatedCallback): QWidget(parent)
+ProductItemForm::ProductItemForm(QWidget *parent, function<void(ProductItem)> onCreatedCallback): QWidget(parent)
 {
     setWindowTitle("Add product");
 
@@ -21,7 +21,7 @@ AddProductItemForm::AddProductItemForm(QWidget *parent, function<void(ProductIte
     _messageLabel = new QLabel("Input data");
     _createButton = new QPushButton("Add");
 
-    QObject::connect(_createButton, &QPushButton::clicked, this, &AddProductItemForm::CreateAndNotify);
+    QObject::connect(_createButton, &QPushButton::clicked, this, &ProductItemForm::CreateAndNotify);
 
     _mainLayout->addWidget(_createButton);
     _mainLayout->addWidget(_messageLabel);
@@ -29,7 +29,7 @@ AddProductItemForm::AddProductItemForm(QWidget *parent, function<void(ProductIte
     _onCreatedCallback = onCreatedCallback;
 }
 
-void AddProductItemForm::CreateAndNotify()
+void ProductItemForm::CreateAndNotify()
 {
     string name = _nameField->text().toStdString();
     int amount = _amountField->text().toInt();

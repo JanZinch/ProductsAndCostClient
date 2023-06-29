@@ -28,18 +28,28 @@ void Customer::RemoveSelectedFromQuery()
 {
     int currentRow = _queryView->currentRow();
 
-    //qDebug("N: " + currentRow);
+    if (currentRow != -1){
 
-    QListWidgetItem *itemView = _queryView->takeItem(currentRow);
+        qDebug() << QString("CR: %1").arg(currentRow);
+
+        QListWidgetItem *itemView = _queryView->takeItem(currentRow);
 
 
-    list<ProductItem>::iterator item = find_if(_queryModel.begin(), _queryModel.end(), [&itemView](const ProductItem &other){
+        list<ProductItem>::iterator item = find_if(_queryModel.begin(), _queryModel.end(), [&itemView](const ProductItem &other){
 
-        return QString::compare(itemView->text(), other.ToQString());
-    });
+            return QString::compare(itemView->text(), other.ToQString());
+        });
 
-    _queryModel.erase(item);
+        _queryModel.erase(item);
 
-    delete itemView;
+        delete itemView;
 
+    }
+
+}
+
+void Customer::ClearQuery()
+{
+    _queryModel.clear();
+    _queryView->clear();
 }

@@ -1,5 +1,5 @@
-#ifndef ADDPRODUCTITEMFORM_H
-#define ADDPRODUCTITEMFORM_H
+#ifndef PRODUCTITEMFORM_H
+#define PRODUCTITEMFORM_H
 
 #include "ProductItem.h"
 
@@ -11,7 +11,7 @@
 #include <QIntValidator>
 #include <functional>
 
-class AddProductItemForm : public QWidget
+class ProductItemForm : public QWidget
 {
     Q_OBJECT
 
@@ -20,6 +20,10 @@ private:
     QVBoxLayout* _mainLayout = nullptr;
 
     QHBoxLayout* _fieldsLayout = nullptr;
+
+    QLabel* _nameLabel = nullptr;
+    QLabel* _amountLabel = nullptr;
+
     QLineEdit* _nameField = nullptr;
     QLineEdit* _amountField = nullptr;
 
@@ -31,11 +35,11 @@ private:
 
 public:
 
-    explicit AddProductItemForm(QWidget *parent = nullptr, function<void(ProductItem)> onCreatedCallback = nullptr);
+    explicit ProductItemForm(QWidget *parent = nullptr, function<void(ProductItem)> onCreatedCallback = nullptr);
     void CreateAndNotify();
 
 signals:
 
 };
 
-#endif // ADDPRODUCTITEMFORM_H
+#endif // PRODUCTITEMFORM_H

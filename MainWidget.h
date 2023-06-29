@@ -1,7 +1,7 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
-#include "AddProductItemForm.h"
+#include "ProductItemForm.h"
 #include "ProductItem.h"
 #include "NetworkManager.h"
 #include "Customer.h"
@@ -52,7 +52,8 @@ private:
 
     void InitButton(QPushButton* instance, QString text, void(MainWidget::*onClickFunc)());
     void ShowAddItemForm();
+    void ShowEditItemForm();
     void RemoveItemFromQuery();
-
+    void ClearQuery();
 };
 #endif // MAINWIDGET_H

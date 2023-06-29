@@ -9,19 +9,19 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    AddProductItemForm.cpp \
     Customer.cpp \
     NetworkManager.cpp \
     ProductItem.cpp \
+    ProductItemForm.cpp \
     main.cpp \
     MainWidget.cpp
 
 HEADERS += \
-    AddProductItemForm.h \
     Customer.h \
     MainWidget.h \
     NetworkManager.h \
-    ProductItem.h
+    ProductItem.h \
+    ProductItemForm.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
