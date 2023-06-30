@@ -42,18 +42,13 @@ ProductItem Customer::GetSelected()
 {
     QListWidgetItem *currentItemView = _queryView->currentItem();
 
-    qDebug() << QString("Current: %1").arg(currentItemView->text());
+    //qDebug() << QString("Current: %1").arg(currentItemView->text());
 
     if (currentItemView != nullptr){
 
         list<ProductItem>::iterator item = find_if(_queryModel.begin(), _queryModel.end(), [&currentItemView](const ProductItem &other){
 
-            // equals but not
-
-            qDebug() << QString("Cmp: %1 = %2").arg(currentItemView->text()).arg(other.ToQString());
-            qDebug() << QString("Current: %1").arg(QString::compare(currentItemView->text(), other.ToQString()));
-
-            return QString::compare(currentItemView->text(), other.ToQString());
+            return QString::compare(currentItemView->text(), other.ToQString()) == 0;
         });
 
         return *item;
@@ -70,15 +65,17 @@ void Customer::RemoveSelectedFromQuery()
 
     if (currentRow != -1){
 
-        qDebug() << QString("CR: %1").arg(currentRow);
+        //qDebug() << QString("CR: %1").arg(currentRow);
 
         QListWidgetItem *itemView = _queryView->takeItem(currentRow);
 
 
         list<ProductItem>::iterator item = find_if(_queryModel.begin(), _queryModel.end(), [&itemView](const ProductItem &other){
 
-            return QString::compare(itemView->text(), other.ToQString());
+            return QString::compare(itemView->text(), other.ToQString()) == 0;
         });
+
+        //qDebug() << QString("ITEM: %1").arg((*item).ToQString());
 
         _queryModel.erase(item);
 
