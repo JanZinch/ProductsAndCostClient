@@ -1,32 +1,68 @@
 #include "ProductItemForm.h"
 
-ProductItemForm::ProductItemForm(QWidget *parent, function<void(ProductItem)> onCreatedCallback): QWidget(parent)
+ProductItemForm::ProductItemForm(QWidget *parent, function<void(ProductItem)> onCompleteCallback): QWidget(parent)
 {
     setWindowTitle("Add product");
+    resize(400, 100);
 
-    _mainLayout = new QVBoxLayout(this);
+    _layout = new QGridLayout(this);
 
+    _nameLabel = new QLabel("Name: ", this);
     _nameField = new QLineEdit(this);
-    _amountField = new QLineEdit(this);
-
-    _fieldsLayout = new QHBoxLayout(this);
-    _fieldsLayout->addWidget(_nameField);
-    _fieldsLayout->addWidget(_amountField);
-
     _nameField->setMaxLength(30);
+
+    _amountLabel = new QLabel("Amount: ", this);
+    _amountField = new QLineEdit(this);
     _amountField->setValidator(new QIntValidator(0, 9999, this));
 
-    _mainLayout->addLayout(_fieldsLayout);
-
-    _messageLabel = new QLabel("Input data");
     _createButton = new QPushButton("Add");
+    _messageLabel = new QLabel("Input data");
+
+    _layout->addWidget(_nameLabel, 0, 0);
+    _layout->addWidget(_nameField, 0, 1);
+    _layout->addWidget(_amountLabel, 1, 0);
+    _layout->addWidget(_amountField, 1, 1);
+
+    _layout->addWidget(_createButton, 2, 0, 1, 2);
+    _layout->addWidget(_messageLabel, 3, 0, 1, 2);
 
     QObject::connect(_createButton, &QPushButton::clicked, this, &ProductItemForm::CreateAndNotify);
 
-    _mainLayout->addWidget(_createButton);
-    _mainLayout->addWidget(_messageLabel);
+    _onCompleteCallback = onCompleteCallback;
+}
 
-    _onCreatedCallback = onCreatedCallback;
+ProductItemForm::ProductItemForm(const ProductItem &editableItem, QWidget *parent, function<void (ProductItem)> onCompleteCallback)
+{
+    setWindowTitle("Edit product");
+    resize(400, 100);
+
+    _layout = new QGridLayout(this);
+
+    _nameLabel = new QLabel("Name: ", this);
+    _nameField = new QLineEdit(this);
+    _nameField->setMaxLength(30);
+    _nameField->setText(editableItem.Name());
+    _nameField->setEnabled(false);
+
+    _amountLabel = new QLabel("Amount: ", this);
+    _amountField = new QLineEdit(this);
+    _amountField->setValidator(new QIntValidator(0, 9999, this));
+
+    _createButton = new QPushButton("Add");
+    _messageLabel = new QLabel("Input data");
+
+    _layout->addWidget(_nameLabel, 0, 0);
+    _layout->addWidget(_nameField, 0, 1);
+    _layout->addWidget(_amountLabel, 1, 0);
+    _layout->addWidget(_amountField, 1, 1);
+
+    _layout->addWidget(_createButton, 2, 0, 1, 2);
+    _layout->addWidget(_messageLabel, 3, 0, 1, 2);
+
+    QObject::connect(_createButton, &QPushButton::clicked, this, &ProductItemForm::CreateAndNotify);
+
+    _onCompleteCallback = onCompleteCallback;
+
 }
 
 void ProductItemForm::CreateAndNotify()
@@ -35,7 +71,9 @@ void ProductItemForm::CreateAndNotify()
     int amount = _amountField->text().toInt();
 
     ProductItem createdProductItem = ProductItem(name.c_str(), amount);
-    _onCreatedCallback(createdProductItem);
+    _onCompleteCallback(createdProductItem);
 }
+
+
 
 

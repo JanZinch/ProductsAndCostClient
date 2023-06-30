@@ -39,3 +39,8 @@ QString ProductItem::ToQString() const
     return result;
 }
 
+bool ProductItem::IsDefault() const
+{
+    return strcmp(_name, NOT_SET) == 0;
+}
+

@@ -25,6 +25,9 @@ public:
 
     Customer(QWidget* viewParent, QBoxLayout* viewLayout);
     void AddToQuery(ProductItem productItem);
+    void UpdateProduct(ProductItem productItem);
+
+    ProductItem GetSelected();
     void RemoveSelectedFromQuery();
     void ClearQuery();
 

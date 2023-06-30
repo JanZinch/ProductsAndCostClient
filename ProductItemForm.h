@@ -21,6 +21,8 @@ private:
 
     QHBoxLayout* _fieldsLayout = nullptr;
 
+    QGridLayout* _layout = nullptr;
+
     QLabel* _nameLabel = nullptr;
     QLabel* _amountLabel = nullptr;
 
@@ -30,13 +32,16 @@ private:
     QPushButton* _createButton = nullptr;
     QLabel* _messageLabel = nullptr;
 
-    function<void(ProductItem)> _onCreatedCallback;
+    function<void(ProductItem)> _onCompleteCallback;
 
+    void CreateAndNotify();
+    void EditAndNotify();
 
 public:
 
     explicit ProductItemForm(QWidget *parent = nullptr, function<void(ProductItem)> onCreatedCallback = nullptr);
-    void CreateAndNotify();
+    explicit ProductItemForm(const ProductItem &editableItem, QWidget *parent = nullptr, function<void(ProductItem)> onEditedCallback = nullptr);
+
 
 signals:
 

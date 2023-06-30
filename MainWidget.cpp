@@ -20,10 +20,10 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     _buttonsLayout = new QHBoxLayout(this);
 
     InitButton(_addItemButton, "Add item", &MainWidget::ShowAddItemForm);
-    InitButton(_editItemButton, "Edit item", nullptr);
+    InitButton(_editItemButton, "Edit item", &MainWidget::ShowEditItemForm);
     InitButton(_removeItemButton, "Remove item", &MainWidget::RemoveItemFromQuery);
     InitButton(_confirmItemButton, "Confirm query", nullptr);
-    InitButton(_clearQueryButton, "Clear query", nullptr);
+    InitButton(_clearQueryButton, "Clear query", &MainWidget::ClearQuery);
 
 
 
@@ -58,18 +58,28 @@ void MainWidget::ShowAddItemForm()
 
 void MainWidget::ShowEditItemForm()
 {
-    ProductItemForm* form = new ProductItemForm(nullptr, [this](ProductItem createdProductItem){
 
-        qDebug() << "Data: " << createdProductItem.ToQString();
+    ProductItem editableItem = _customer->GetSelected();
 
-        if (_networkManager->VerifyProduct(createdProductItem)){
+    if (editableItem.IsDefault()){
 
-            _customer->AddToQuery(createdProductItem);
-        }
+        return;
+    }
+    else {
 
-    });
+        ProductItemForm* form = new ProductItemForm(editableItem, nullptr, [this](ProductItem editedProductItem){
 
-    form->show();
+            qDebug() << "Data: " << editedProductItem.ToQString();
+
+            _customer->UpdateProduct(editedProductItem);
+
+        });
+
+        form->show();
+
+    }
+
+
 
 
 

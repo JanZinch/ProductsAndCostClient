@@ -24,6 +24,46 @@ void Customer::AddToQuery(ProductItem productItem)
     }
 }
 
+void Customer::UpdateProduct(ProductItem productItem)
+{
+    list<ProductItem>::iterator sameItem = find(_queryModel.begin(), _queryModel.end(), productItem);
+
+    if (sameItem != _queryModel.end()){
+
+        QListWidgetItem* sameItemView = _queryView->findItems(sameItem->ToQString(), Qt::MatchExactly).at(0);
+
+        *sameItem = ProductItem(sameItem->Name(), productItem.Amount());
+        sameItemView->setText((*sameItem).ToQString());
+    }
+
+}
+
+ProductItem Customer::GetSelected()
+{
+    QListWidgetItem *currentItemView = _queryView->currentItem();
+
+    qDebug() << QString("Current: %1").arg(currentItemView->text());
+
+    if (currentItemView != nullptr){
+
+        list<ProductItem>::iterator item = find_if(_queryModel.begin(), _queryModel.end(), [&currentItemView](const ProductItem &other){
+
+            // equals but not
+
+            qDebug() << QString("Cmp: %1 = %2").arg(currentItemView->text()).arg(other.ToQString());
+            qDebug() << QString("Current: %1").arg(QString::compare(currentItemView->text(), other.ToQString()));
+
+            return QString::compare(currentItemView->text(), other.ToQString());
+        });
+
+        return *item;
+    }
+    else {
+
+        return ProductItem();
+    }
+}
+
 void Customer::RemoveSelectedFromQuery()
 {
     int currentRow = _queryView->currentRow();
