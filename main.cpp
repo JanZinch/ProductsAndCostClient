@@ -4,7 +4,7 @@
 #include <QApplication>
 
 int main(int argc, char *argv[])
-{
+{   
     QApplication app(argc, argv);
 
     try {
@@ -12,6 +12,11 @@ int main(int argc, char *argv[])
         MainWidget window;
         window.setWindowTitle("Client");
         window.show();
+
+        set_terminate([](){
+
+
+        });
 
         return app.exec();
     }

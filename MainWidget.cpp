@@ -48,6 +48,7 @@ void MainWidget::ShowAddItemForm()
 
         if (_networkManager->VerifyProduct(createdProductItem)){
 
+            qDebug() << "Success!";
             _customer->AddToQuery(createdProductItem);
         }
 
@@ -58,7 +59,6 @@ void MainWidget::ShowAddItemForm()
 
 void MainWidget::ShowEditItemForm()
 {
-
     ProductItem editableItem = _customer->GetSelected();
 
     if (editableItem.IsDefault()){
@@ -78,12 +78,6 @@ void MainWidget::ShowEditItemForm()
         form->show();
 
     }
-
-
-
-
-
-
 }
 
 void MainWidget::RemoveItemFromQuery(){

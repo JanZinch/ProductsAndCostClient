@@ -37,8 +37,14 @@ bool NetworkManager::ConnectToServer()
 
 bool NetworkManager::VerifyProduct(ProductItem productItem)
 {
+    char messageBuffer[MESSAGE_BUFFER_SIZE];
+    strcpy_s(messageBuffer, VERIFY_PRODUCT);
+    strcat_s(messageBuffer, sizeof(messageBuffer), productItem.Name());
 
-    return true;
+    send(_serverSocket, messageBuffer, sizeof(messageBuffer), 0);
+    recv(_serverSocket, messageBuffer, sizeof(messageBuffer), 0);
+
+    return strcmp(messageBuffer, STR_TRUE) == 0;
 }
 
 NetworkManager::~NetworkManager()
