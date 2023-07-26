@@ -49,6 +49,10 @@ bool NetworkManager::VerifyProduct(ProductItem productItem)
 
 NetworkManager::~NetworkManager()
 {
+    char messageBuffer[MESSAGE_BUFFER_SIZE];
+    strcpy_s(messageBuffer, COMPLETE_SESSION);
+    send(_serverSocket, messageBuffer, sizeof(messageBuffer), 0);
+
     closesocket(_serverSocket);
     WSACleanup();
 
