@@ -54,6 +54,7 @@ private:
     void ShowAddItemForm();
     void ShowEditItemForm();
     void RemoveItemFromQuery();
+    void CalculateQueryCost();
     void ClearQuery();
 };
 #endif // MAINWIDGET_H

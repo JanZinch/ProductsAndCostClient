@@ -35,7 +35,7 @@ bool NetworkManager::ConnectToServer()
 
 }
 
-bool NetworkManager::VerifyProduct(ProductItem productItem)
+bool NetworkManager::VerifyProduct(const ProductItem & productItem)
 {
     char messageBuffer[MESSAGE_BUFFER_SIZE];
     strcpy_s(messageBuffer, VERIFY_PRODUCT);
@@ -45,6 +45,26 @@ bool NetworkManager::VerifyProduct(ProductItem productItem)
     recv(_serverSocket, messageBuffer, sizeof(messageBuffer), 0);
 
     return strcmp(messageBuffer, STR_TRUE) == 0;
+}
+
+Money NetworkManager::CalculateQueryCost(const list<ProductItem> &productsQuery)
+{
+    string rawMessageBuffer = string(CALCULATE_QUERY_COST);
+
+    for (ProductItem productItem : productsQuery){
+
+        rawMessageBuffer.append(productItem.Name());
+        rawMessageBuffer.push_back('|');
+        rawMessageBuffer.append(to_string(productItem.Amount()));
+        rawMessageBuffer.push_back('|');
+    }
+
+
+    qDebug() << rawMessageBuffer.c_str();
+
+    send(_serverSocket, rawMessageBuffer.c_str(), MESSAGE_BUFFER_SIZE, 0);
+
+    return Default;
 }
 
 NetworkManager::~NetworkManager()

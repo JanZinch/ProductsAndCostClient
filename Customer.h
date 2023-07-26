@@ -28,7 +28,8 @@ public:
     void UpdateProduct(ProductItem productItem);
 
     ProductItem GetSelected();
-    void RemoveSelectedFromQuery();
+    void RemoveSelectedFromQuery();   
+    list<ProductItem> GetQuery() const;
     void ClearQuery();
 
 };

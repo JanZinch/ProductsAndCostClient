@@ -22,15 +22,12 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
     InitButton(_addItemButton, "Add item", &MainWidget::ShowAddItemForm);
     InitButton(_editItemButton, "Edit item", &MainWidget::ShowEditItemForm);
     InitButton(_removeItemButton, "Remove item", &MainWidget::RemoveItemFromQuery);
-    InitButton(_confirmItemButton, "Confirm query", nullptr);
+    InitButton(_confirmItemButton, "Confirm query", &MainWidget::CalculateQueryCost);
     InitButton(_clearQueryButton, "Clear query", &MainWidget::ClearQuery);
-
-
 
     _mainLayout->addLayout(_buttonsLayout);
 
     setLayout(_mainLayout);
-
 }
 
 void MainWidget::InitButton(QPushButton* instance, QString text, void(MainWidget::*onClickFunc)())
@@ -83,6 +80,15 @@ void MainWidget::ShowEditItemForm()
 void MainWidget::RemoveItemFromQuery(){
 
     _customer->RemoveSelectedFromQuery();
+}
+
+void MainWidget::CalculateQueryCost()
+{
+
+    _networkManager->CalculateQueryCost(_customer->GetQuery());
+
+
+
 }
 
 void MainWidget::ClearQuery()

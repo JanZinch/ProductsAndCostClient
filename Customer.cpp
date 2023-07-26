@@ -77,6 +77,11 @@ void Customer::RemoveSelectedFromQuery()
 
 }
 
+list<ProductItem> Customer::GetQuery() const
+{
+    return _queryModel;
+}
+
 void Customer::ClearQuery()
 {
     _queryModel.clear();
