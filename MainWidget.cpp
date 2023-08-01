@@ -48,6 +48,13 @@ void MainWidget::ShowAddItemForm()
             qDebug() << "Success!";
             _customer->AddToQuery(createdProductItem);
         }
+        else {
+
+            QMessageBox messageBox;
+            messageBox.warning(this, "Operation failed", "This product is not exists in database", QMessageBox::Ok);
+            messageBox.setFixedSize(500, 200);
+
+        }
 
     });
 
@@ -88,6 +95,10 @@ void MainWidget::CalculateQueryCost()
     QMoney cost = _networkManager->CalculateQueryCost(_customer->GetQuery());
 
     qDebug() << "Cost: " << cost.ToQString();
+
+    QMessageBox messageBox;
+    messageBox.information(this, "Calculation complete", "Your query cost: " + cost.ToQString(), QMessageBox::Ok);
+    messageBox.setFixedSize(500, 200);
 
 }
 
