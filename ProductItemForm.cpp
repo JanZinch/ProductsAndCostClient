@@ -74,6 +74,3 @@ void ProductItemForm::CreateAndNotify()
     _onCompleteCallback(createdProductItem);
 }
 
-
-
-

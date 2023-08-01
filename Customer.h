@@ -2,14 +2,12 @@
 #define CUSTOMER_H
 
 #include "ProductItem.h"
-#include <list>
 
+#include <list>
+#include <algorithm>
 #include <QBoxLayout>
 #include <QListWidget>
 #include <QDebug>
-
-#include <algorithm>
-
 
 using namespace std;
 

@@ -1,15 +1,15 @@
 #ifndef MONEY_H
 #define MONEY_H
 
+#include <iostream>
 #include <iomanip>
 
 using namespace std;
 
 namespace MoneyLogic
 {
-    class Money
+    struct Money
     {
-
     protected:
 
         float _count = -1.0f;
@@ -23,11 +23,11 @@ namespace MoneyLogic
         friend ostream& operator<<(ostream&, const Money&);
         friend istream& operator>>(istream&, Money&);
         Money& operator=(const Money&);
-        Money operator+(const Money&);
-        Money operator-(const Money&);
+        Money operator+(const Money&) const;
+        Money operator-(const Money&) const;
+        Money& operator+=(const Money&);
         friend bool operator==(const Money&, const Money&);
-        template<typename T>
-        Money operator*(T&);
+        Money operator*(float) const;
         static bool ApproximatelyEquals(float, float);
 
     };
@@ -35,5 +35,7 @@ namespace MoneyLogic
     static const Money Default {-1.0f, "N/D"};
 
 }
+
+
 
 #endif // MONEY_H

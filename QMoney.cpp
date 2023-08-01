@@ -2,16 +2,7 @@
 
 namespace MoneyLogic
 {
-
     QMoney::QMoney() : Money(){}
-
-//    QMoney::QMoney(const Money & other)
-//    {
-//        _count = other._count;
-//        strcpy_s(_currency, other._currency);
-
-//    }
-
 
     QTextStream& operator<<(QTextStream& out, const QMoney &moneyObject) {
 
@@ -27,7 +18,6 @@ namespace MoneyLogic
         return result;
 
     }
-
 
 }
 

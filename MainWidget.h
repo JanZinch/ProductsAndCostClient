@@ -13,13 +13,13 @@
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QListWidget>
-#include <string>
-#include <functional>
-#include <sstream>
 #include <QTextStream>
 #include <QMessageBox>
 #include <QApplication>
 
+#include <string>
+#include <functional>
+#include <sstream>
 #include <memory>
 
 using namespace std;

@@ -8,18 +8,14 @@
 
 namespace MoneyLogic
 {
-
     class QMoney : public MoneyLogic::Money
     {
     public:
 
         QMoney();
-        //QMoney(const Money&);
         friend QTextStream& operator<<(QTextStream&, const QMoney&);
         QString ToQString() const;
-
     };
-
 }
 
 #endif // QMONEY_H

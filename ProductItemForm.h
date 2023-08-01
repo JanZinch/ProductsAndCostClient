@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QIntValidator>
+
 #include <functional>
 
 class ProductItemForm : public QWidget

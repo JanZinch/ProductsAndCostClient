@@ -41,11 +41,8 @@ void MainWidget::ShowAddItemForm()
 {
     ProductItemForm* form = new ProductItemForm(nullptr, [this](ProductItem createdProductItem){
 
-        qDebug() << "Data: " << createdProductItem.ToQString();
-
         if (_networkManager->VerifyProduct(createdProductItem)){
 
-            qDebug() << "Success!";
             _customer->AddToQuery(createdProductItem);
         }
         else {
@@ -53,7 +50,6 @@ void MainWidget::ShowAddItemForm()
             QMessageBox messageBox;
             messageBox.warning(this, "Operation failed", "This product is not exists in database", QMessageBox::Ok);
             messageBox.setFixedSize(500, 200);
-
         }
 
     });
@@ -73,14 +69,10 @@ void MainWidget::ShowEditItemForm()
 
         ProductItemForm* form = new ProductItemForm(editableItem, nullptr, [this](ProductItem editedProductItem){
 
-            qDebug() << "Data: " << editedProductItem.ToQString();
-
             _customer->UpdateProduct(editedProductItem);
-
         });
 
         form->show();
-
     }
 }
 
@@ -91,15 +83,11 @@ void MainWidget::RemoveItemFromQuery(){
 
 void MainWidget::CalculateQueryCost()
 {
-
     QMoney cost = _networkManager->CalculateQueryCost(_customer->GetQuery());
-
-    qDebug() << "Cost: " << cost.ToQString();
 
     QMessageBox messageBox;
     messageBox.information(this, "Calculation complete", "Your query cost: " + cost.ToQString(), QMessageBox::Ok);
     messageBox.setFixedSize(500, 200);
-
 }
 
 void MainWidget::ClearQuery()

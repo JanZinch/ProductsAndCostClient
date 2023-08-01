@@ -22,10 +22,11 @@ public:
     ProductItem(const char *, int);
     const char* Name() const;
     const int Amount() const;
+    bool IsDefault() const;
     bool operator ==(const ProductItem&);
     friend QTextStream& operator<<(QTextStream&, const ProductItem&);
     QString ToQString() const;
-    bool IsDefault() const;
+
 
 };
 

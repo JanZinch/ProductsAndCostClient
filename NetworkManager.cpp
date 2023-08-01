@@ -49,25 +49,23 @@ bool NetworkManager::VerifyProduct(const ProductItem & productItem)
 
 QMoney NetworkManager::CalculateQueryCost(const list<ProductItem> &productsQuery)
 {
-    string rawMessageBuffer = string(CALCULATE_QUERY_COST);     // TODO string builder
+    const char QueryWordsDelimiter = '|';
+
+    stringstream messageStream;
+    messageStream << CALCULATE_QUERY_COST;
 
     for (ProductItem productItem : productsQuery){
 
-        rawMessageBuffer.append(productItem.Name());
-        rawMessageBuffer.push_back('|');
-        rawMessageBuffer.append(to_string(productItem.Amount()));
-        rawMessageBuffer.push_back('|');
+        messageStream << productItem.Name();
+        messageStream << QueryWordsDelimiter;
+        messageStream << to_string(productItem.Amount());
+        messageStream << QueryWordsDelimiter;
     }
 
-
-    qDebug() << rawMessageBuffer.c_str();
-
-    send(_serverSocket, rawMessageBuffer.c_str(), MESSAGE_BUFFER_SIZE, 0);
-
+    send(_serverSocket, messageStream.str().c_str(), MESSAGE_BUFFER_SIZE, 0);
 
     char messageBuffer[MESSAGE_BUFFER_SIZE];
     recv(_serverSocket, messageBuffer, sizeof(messageBuffer), 0);
-
 
     stringstream messageBufferStream;
     messageBufferStream.str(messageBuffer);

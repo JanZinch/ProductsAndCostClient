@@ -18,6 +18,11 @@ const int ProductItem::Amount() const
     return _amount;
 }
 
+bool ProductItem::IsDefault() const
+{
+    return strcmp(_name, NOT_SET) == 0;
+}
+
 bool ProductItem::operator==(const ProductItem &other){
 
     return strcmp(this->Name(), other.Name()) == 0;
@@ -38,9 +43,3 @@ QString ProductItem::ToQString() const
 
     return result;
 }
-
-bool ProductItem::IsDefault() const
-{
-    return strcmp(_name, NOT_SET) == 0;
-}
-
