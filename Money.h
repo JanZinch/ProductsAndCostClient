@@ -9,7 +9,8 @@ namespace MoneyLogic
 {
     class Money
     {
-    private:
+
+    protected:
 
         float _count = -1.0f;
         char _currency[6] = "N/D";

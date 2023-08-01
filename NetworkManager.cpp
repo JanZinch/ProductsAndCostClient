@@ -47,9 +47,9 @@ bool NetworkManager::VerifyProduct(const ProductItem & productItem)
     return strcmp(messageBuffer, STR_TRUE) == 0;
 }
 
-Money NetworkManager::CalculateQueryCost(const list<ProductItem> &productsQuery)
+QMoney NetworkManager::CalculateQueryCost(const list<ProductItem> &productsQuery)
 {
-    string rawMessageBuffer = string(CALCULATE_QUERY_COST);
+    string rawMessageBuffer = string(CALCULATE_QUERY_COST);     // TODO string builder
 
     for (ProductItem productItem : productsQuery){
 
@@ -64,7 +64,18 @@ Money NetworkManager::CalculateQueryCost(const list<ProductItem> &productsQuery)
 
     send(_serverSocket, rawMessageBuffer.c_str(), MESSAGE_BUFFER_SIZE, 0);
 
-    return Default;
+
+    char messageBuffer[MESSAGE_BUFFER_SIZE];
+    recv(_serverSocket, messageBuffer, sizeof(messageBuffer), 0);
+
+
+    stringstream messageBufferStream;
+    messageBufferStream.str(messageBuffer);
+
+    QMoney cost;
+    messageBufferStream >> cost;
+
+    return cost;
 }
 
 NetworkManager::~NetworkManager()

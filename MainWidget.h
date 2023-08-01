@@ -5,6 +5,7 @@
 #include "ProductItem.h"
 #include "NetworkManager.h"
 #include "Customer.h"
+#include "QMoney.h"
 
 #include <QDebug>
 #include <QWindow>

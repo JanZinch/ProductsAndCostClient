@@ -85,9 +85,9 @@ void MainWidget::RemoveItemFromQuery(){
 void MainWidget::CalculateQueryCost()
 {
 
-    _networkManager->CalculateQueryCost(_customer->GetQuery());
+    QMoney cost = _networkManager->CalculateQueryCost(_customer->GetQuery());
 
-
+    qDebug() << "Cost: " << cost.ToQString();
 
 }
 

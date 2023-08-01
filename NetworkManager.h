@@ -5,8 +5,10 @@
 #include <winsock2.h>
 #pragma comment(lib, "Ws2_32.lib")
 
+#include <sstream>
 #include "ProductItem.h"
 #include "Money.h"
+#include "QMoney.h"
 #include <QDebug>
 
 #define global
@@ -36,7 +38,7 @@ public:
     NetworkManager(int port, const char* ip);
     bool ConnectToServer();
     bool VerifyProduct(const ProductItem &productItem);
-    Money CalculateQueryCost(const list<ProductItem> &productsQuery);
+    QMoney CalculateQueryCost(const list<ProductItem> &productsQuery);
     ~NetworkManager();
 };
 

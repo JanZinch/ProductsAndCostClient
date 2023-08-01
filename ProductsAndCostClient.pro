@@ -14,6 +14,7 @@ SOURCES += \
     NetworkManager.cpp \
     ProductItem.cpp \
     ProductItemForm.cpp \
+    QMoney.cpp \
     main.cpp \
     MainWidget.cpp
 
@@ -23,7 +24,8 @@ HEADERS += \
     Money.h \
     NetworkManager.h \
     ProductItem.h \
-    ProductItemForm.h
+    ProductItemForm.h \
+    QMoney.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
