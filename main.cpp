@@ -10,14 +10,8 @@ int main(int argc, char *argv[])
     try {
 
         MainWidget window;
-        window.setWindowTitle("Client");
+        window.setWindowTitle("Query Cost Calculation");
         window.show();
-
-        set_terminate([](){
-
-            qDebug() << "Ex";
-
-        });
 
         return app.exec();
     }

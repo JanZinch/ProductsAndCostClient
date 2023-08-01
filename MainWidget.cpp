@@ -48,7 +48,7 @@ void MainWidget::ShowAddItemForm()
         else {
 
             QMessageBox messageBox;
-            messageBox.warning(this, "Operation failed", "This product is not exists in database", QMessageBox::Ok);
+            messageBox.warning(this, "Operation failed", "This product is not exists in the database", QMessageBox::Ok);
             messageBox.setFixedSize(500, 200);
         }
 

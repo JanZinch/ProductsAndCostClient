@@ -31,7 +31,6 @@ private:
     QLineEdit* _amountField = nullptr;
 
     QPushButton* _createButton = nullptr;
-    QLabel* _messageLabel = nullptr;
 
     function<void(ProductItem)> _onCompleteCallback;
 

@@ -16,7 +16,6 @@ ProductItemForm::ProductItemForm(QWidget *parent, function<void(ProductItem)> on
     _amountField->setValidator(new QIntValidator(0, 9999, this));
 
     _createButton = new QPushButton("Add");
-    _messageLabel = new QLabel("Input data");
 
     _layout->addWidget(_nameLabel, 0, 0);
     _layout->addWidget(_nameField, 0, 1);
@@ -24,7 +23,6 @@ ProductItemForm::ProductItemForm(QWidget *parent, function<void(ProductItem)> on
     _layout->addWidget(_amountField, 1, 1);
 
     _layout->addWidget(_createButton, 2, 0, 1, 2);
-    _layout->addWidget(_messageLabel, 3, 0, 1, 2);
 
     QObject::connect(_createButton, &QPushButton::clicked, this, &ProductItemForm::CreateAndNotify);
 
@@ -48,8 +46,7 @@ ProductItemForm::ProductItemForm(const ProductItem &editableItem, QWidget *paren
     _amountField = new QLineEdit(this);
     _amountField->setValidator(new QIntValidator(0, 9999, this));
 
-    _createButton = new QPushButton("Add");
-    _messageLabel = new QLabel("Input data");
+    _createButton = new QPushButton("Edit");
 
     _layout->addWidget(_nameLabel, 0, 0);
     _layout->addWidget(_nameField, 0, 1);
@@ -57,7 +54,6 @@ ProductItemForm::ProductItemForm(const ProductItem &editableItem, QWidget *paren
     _layout->addWidget(_amountField, 1, 1);
 
     _layout->addWidget(_createButton, 2, 0, 1, 2);
-    _layout->addWidget(_messageLabel, 3, 0, 1, 2);
 
     QObject::connect(_createButton, &QPushButton::clicked, this, &ProductItemForm::CreateAndNotify);
 
